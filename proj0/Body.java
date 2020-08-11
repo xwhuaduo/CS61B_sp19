@@ -42,4 +42,52 @@ public class Body{
 		double force = gg * this.mass * b.mass/Math.pow(rr,2);
 		return force;
 	}
+
+	/** Method to calculate net force on x-axis. */
+	public double calcForceExertedByX(Body b) {
+		double force = this.calcForceExertedBy(b);
+		double rr = this.calcDistance(b);
+		double xxDif = b.xxPos - this.xxPos;
+		double forceX = force * xxDif / rr;
+
+		return forceX;
+	}
+
+
+	/** Method to calculate net force on y-axis. */
+	public double calcForceExertedByY(Body b) {
+		double force = this.calcForceExertedBy(b);
+		double rr = this.calcDistance(b);
+		double yyDif = b.yyPos - this.yyPos;
+		double forceY = force * yyDif / rr;
+
+		return forceY;
+	}
+
+	/** Method to calculate net force on x-axis exerted by one or more objects. */
+	public double calcNetForceExertedByX(Body[] bs) {
+		double forceX = 0;
+		for (Body b: bs) {
+			if (this.equals(b)) {
+
+			} else {
+				forceX += this.calcForceExertedByX(b);
+			}
+		}
+		return forceX;
+	}
+
+	/** Method to calculate net force on y-axis exerted by one or more objects. */
+	public double calcNetForceExertedByY(Body[] bs) {
+		double forceY = 0;
+		for (Body b: bs) {
+			if (this.equals(b)) {
+
+			} else {
+				forceY += this.calcForceExertedByY(b);
+			}
+		}
+		return forceY;
+	}
+
 }
