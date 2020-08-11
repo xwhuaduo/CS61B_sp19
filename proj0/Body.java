@@ -6,6 +6,8 @@ public class Body{
 	public double mass;
 	public String imgFileName;
 
+	public static final double gg = 6.67e-11;
+
 	/** Constructors */
 	public Body(double xP, double yP, double xV,
 				double yV, double m, String img) {
@@ -37,7 +39,6 @@ public class Body{
 	/** Method to calculate force exerted on give Body. */
 	public double calcForceExertedBy(Body b) {
 		double rr = this.calcDistance(b);
-		double gg = 6.67 * Math.pow(10,-11);
 		double force = gg * this.mass * b.mass/Math.pow(rr,2);
 		return force;
 	}
