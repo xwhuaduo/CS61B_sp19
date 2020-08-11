@@ -90,4 +90,14 @@ public class Body{
 		return forceY;
 	}
 
+	/** Method to update body. */
+	public void update(double t, double fx, double fy) {
+		double xxA = fx / this.mass;
+		double yyA = fy / this.mass;
+		this.xxVel = this.xxVel + t*xxA;
+		this.yyVel = this.yyVel + t*yyA;
+		this.xxPos = this.xxPos + this.xxVel * t;
+		this.yyPos = this.yyPos + this.yyVel * t;
+	}
+
 }
