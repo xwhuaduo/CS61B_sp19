@@ -100,4 +100,10 @@ public class Body{
 		this.yyPos = this.yyPos + this.yyVel * t;
 	}
 
+	public void draw() {
+		StdDraw.picture(this.xxPos, this.yyPos, "images/"+this.imgFileName);
+	}
+
+
+
 }
