@@ -29,7 +29,7 @@ public class LinkedListDeque<T> {
                 return t;
             }
 
-            return next.nodeGet(index-1);
+            return next.nodeGet(index - 1);
         }
     }
 
