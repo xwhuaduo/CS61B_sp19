@@ -1,31 +1,40 @@
-public class LinkedListDeque<T>{
+public class LinkedListDeque<T> {
 
-    public class ItemNode{
-        public ItemNode prev;
-        public ItemNode next;
-        public T t;
+    private class ItemNode {
+        private ItemNode prev;
+        private ItemNode next;
+        private T t;
 
-        public ItemNode(T i){
+        public ItemNode(T i) {
             prev = null;
             next = null;
             t = i;
         }
 
-        public ItemNode(){
+        public ItemNode() {
             prev = null;
             next = null;
             t = null;
         }
 
-        public ItemNode(ItemNode front, T i, ItemNode back) {
+        public ItemNode(ItemNode front,
+                        T i, ItemNode back) {
             prev = front;
             t = i;
             next = back;
         }
+
+        public T nodeGet(int index) {
+            if (index == 0) {
+                return t;
+            }
+
+            return next.nodeGet(index-1);
+        }
     }
 
-    public int size;
-    public ItemNode first;
+    private int size;
+    private ItemNode first;
 
     public LinkedListDeque() {
         first = new ItemNode();
@@ -76,28 +85,28 @@ public class LinkedListDeque<T>{
     }
 
     public T removeFirst() {
-        T value = first.next.t;
+        ItemNode temp = first.next;
 
         first.next = first.next.next;
         first.next.prev = first;
 
         size = Math.max(size - 1, 0);
 
-        return value;
+        return temp.t;
     }
 
     public T removeLast() {
-        T value = first.prev.t;
+        ItemNode temp = first.prev;
 
         first.prev = first.prev.prev;
         first.prev.next = first;
 
         size = Math.max(size - 1, 0);
-        return value;
+        return temp.t;
     }
 
     public T get(int index) {
-        int position = Math.min(index, size) ;
+        int position = Math.min(index, size);
         ItemNode ptr = first;
         int i = 0;
         while (i <= position) {
@@ -108,30 +117,36 @@ public class LinkedListDeque<T>{
         return ptr.t;
     }
 
-    public LinkedListDeque(LinkedListDeque other) {
-        size = other.size;
-        first = new ItemNode();
-        first.next = first;
-        first.prev = first;
-        int i = 0;
-        while (i < size) {
-            this.addLast((T) other.get(i));
-            i = i + 1;
-        }
-    }
+//    public LinkedListDeque(LinkedListDeque other) {
+//        size = other.size;
+//        first = new ItemNode();
+//        first.next = first;
+//        first.prev = first;
+//        int i = 0;
+//        while (i < size) {
+//            this.addLast((T) other.get(i));
+//            i = i + 1;
+//        }
+//    }
 
     public T getRecursive(int index) {
-//        int position = Math.min(index, size) ;
-        if (index >= size) {
-            return null;
-        } else if (index == 0) {
-            return this.first.next.t;
-        }
-
-        LinkedListDeque temp = new LinkedListDeque();
-        temp.first = first;
-        temp.first.next = first.next.next;
-        temp.size = size - 1;
-        return (T) temp.getRecursive(index-1);
+////        int position = Math.min(index, size);
+//        if (index >= size) {
+//            return null;
+//        } else if (index == 0) {
+//            return this.first.next.t;
+//        }
+//
+//        LinkedListDeque temp = new LinkedListDeque();
+//        temp.first = first;
+//        temp.first.next = first.next.next;
+//        temp.size = size - 1;
+//        return (T) temp.getRecursive(index - 1);
+        return first.next.nodeGet(index);
     }
+
+//    public static void main(String[] args) {
+//        LinkedListDeque<int> test = new  LinkedListDeque();
+//        test.addFirst(1);
+//    }
 }
