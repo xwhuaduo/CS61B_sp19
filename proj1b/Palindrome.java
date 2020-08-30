@@ -35,8 +35,9 @@ public class Palindrome {
         }
 
         if (cc.equalChars(q.removeFirst(), q.removeLast())) {
-            return isPalindromeRecursion(q);
+            return isNewPalindromeRecursion(q, cc);
         }
         return false;
     }
 }
+
