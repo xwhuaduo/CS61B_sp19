@@ -21,15 +21,19 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("noon"));
         assertTrue(palindrome.isPalindrome("a"));
         assertFalse(palindrome.isPalindrome("car"));
+        assertTrue(palindrome.isPalindrome(""));
+        assertTrue(palindrome.isPalindrome(","));
+        assertFalse(palindrome.isPalindrome("a!"));
     }
 
     @Test
     public void testNewIsPalindrome() {
         CharacterComparator offbyone = new OffByOne();
-        palindrome.isPalindrome("acdb", offbyone);
-
-        assertTrue(palindrome.isPalindrome("ab", offbyone));
+        assertFalse(palindrome.isPalindrome("Ab", offbyone));
         assertTrue(palindrome.isPalindrome("acdb", offbyone));
         assertFalse(palindrome.isPalindrome("ac", offbyone));
+        assertTrue(palindrome.isPalindrome("", offbyone));
+        assertTrue(palindrome.isPalindrome(".", offbyone));
+        assertFalse(palindrome.isPalindrome("a.", offbyone));
     }
 }

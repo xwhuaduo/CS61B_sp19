@@ -10,10 +10,9 @@ public class Palindrome {
     public boolean isPalindrome(String word) {
         Deque<Character> word1 = wordToDeque(word);
         return isPalindromeRecursion(word1);
-
     }
 
-    public boolean isPalindromeRecursion(Deque<Character> q) {
+    private boolean isPalindromeRecursion(Deque<Character> q) {
         if (q.size() <= 1) {
             return true;
         }
@@ -29,7 +28,7 @@ public class Palindrome {
         return isNewPalindromeRecursion(word1, cc);
     }
 
-    public boolean isNewPalindromeRecursion(Deque<Character> q, CharacterComparator cc) {
+    private boolean isNewPalindromeRecursion(Deque<Character> q, CharacterComparator cc) {
         if (q.size() <= 1) {
             return true;
         }

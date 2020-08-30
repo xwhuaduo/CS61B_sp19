@@ -5,8 +5,4 @@ public class OffByOne implements CharacterComparator {
         int res = Math.abs(x - y);
         return res == 1;
     }
-
-    public boolean isPalindrome(String word) {
-        return true;
-    }
 }
